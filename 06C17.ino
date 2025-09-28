@@ -1,8 +1,7 @@
-const int LED_PIN = 9;  
+const int LED_PIN = 9;
 
-
-const unsigned int PERIOD = 10000;  
-const int DUTY= 100;  
+const unsigned int PERIOD = 10000;  // 주기(us)
+const int DUTY = 100;               // 듀티(%)
 int i = 0;
 int k = 1;
 
@@ -16,21 +15,16 @@ void loop() {
   if (i <= 0 || i >= DUTY) {
     k = -k;
   }
-  
- 
-  unsigned int on = (unsigned long)i * PERIOD / 100;
 
+  unsigned int on = (unsigned long)i * PERIOD / 100;
 
   if (on > 0) {
     digitalWrite(LED_PIN, HIGH);
     delayMicroseconds(on);
-    printf(on);
   }
-
 
   if (on < PERIOD) {
     digitalWrite(LED_PIN, LOW);
     delayMicroseconds(PERIOD - on);
-   printf(PERIOD - on);
   }
 }
