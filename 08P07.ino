@@ -1,9 +1,9 @@
-
+// Arduino pin assignment
 #define PIN_LED  9
 #define PIN_TRIG 12
 #define PIN_ECHO 13
 
-
+// configurable parameters
 #define SND_VEL 346.0
 #define INTERVAL 25
 #define PULSE_DURATION 10
@@ -34,12 +34,13 @@ void loop() {
 
   dis = USS_measure(PIN_TRIG, PIN_ECHO);
 
-  if (dis >= 100.0 && dis <= 200.0) {
+  // ✅ if문 순서 정리: 작은 거리 → 큰 거리
+  if (dis < 100.0) {
+    duty = 255;
+  } else if (dis >= 100.0 && dis <= 200.0) {
     duty = (int)(((200.0 - dis) / 100.0) * 255.0);
   } else if (dis > 200.0 && dis <= 300.0) {
     duty = (int)(((dis - 200.0) / 100.0) * 255.0);
-  } else if (dis > 300.0) {
-    duty = 255;
   } else {
     duty = 255;
   }
@@ -69,4 +70,3 @@ float USS_measure(int TRIG, int ECHO)
 
   return pulseIn(ECHO, HIGH, TIMEOUT) * SCALE;
 }
-
