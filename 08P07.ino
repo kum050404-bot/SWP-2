@@ -1,9 +1,9 @@
-// Arduino pin assignment
+
 #define PIN_LED  9
 #define PIN_TRIG 12
 #define PIN_ECHO 13
 
-// configurable parameters
+
 #define SND_VEL 346.0
 #define INTERVAL 25
 #define PULSE_DURATION 10
@@ -69,3 +69,4 @@ float USS_measure(int TRIG, int ECHO)
 
   return pulseIn(ECHO, HIGH, TIMEOUT) * SCALE;
 }
+
