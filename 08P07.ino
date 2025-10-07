@@ -34,7 +34,6 @@ void loop() {
 
   dis = USS_measure(PIN_TRIG, PIN_ECHO);
 
-  // ✅ if문 순서 정리: 작은 거리 → 큰 거리
   if (dis < 100.0) {
     duty = 255;
   } else if (dis >= 100.0 && dis <= 200.0) {
@@ -70,3 +69,4 @@ float USS_measure(int TRIG, int ECHO)
 
   return pulseIn(ECHO, HIGH, TIMEOUT) * SCALE;
 }
+
